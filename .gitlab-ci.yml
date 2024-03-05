@@ -1,0 +1,39 @@
+stages:
+    - deploy
+deploy-prod:
+    stage: deploy
+    only:
+        - main
+    script:
+        - echo "Start deploy production"
+        - cd /stage/k-news/k-news-api
+        - git config --global --add safe.directory /stage/k-news/k-news-api
+        - sudo git fetch --all
+        - sudo git checkout main
+        - sudo git pull origin main
+        - export COMPOSER_ALLOW_SUPERUSER=1
+        - composer install
+        - sudo npm install
+        - sudo npm run build
+        - echo "finish production"
+    tags:
+        - k-news-api-runner
+
+deploy-dev1:
+  stage: deploy
+  only:
+    - dev1
+  script:
+    - echo "Start deploy dev1"
+    - cd /stage/k-news/dev1/k-news-api
+    - git config --global --add safe.directory /stage/k-news/dev1/k-news-api
+    - sudo git fetch --all
+    - sudo git checkout dev1
+    - sudo git pull origin dev1
+    - export COMPOSER_ALLOW_SUPERUSER=1
+    - composer install
+    - sudo npm install
+    - sudo npm run build
+    - echo "finish dev1"
+  tags:
+    - k-news-api-runner
