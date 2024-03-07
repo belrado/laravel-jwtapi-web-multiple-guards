@@ -195,7 +195,17 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         *  jwt
+         */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        /**
+         * swagger
+         */
+        L5Swagger\L5SwaggerServiceProvider::class,
+        /**
+         * user custom
+         */
         App\Providers\CustomServiceProvider::class,
     ],
 

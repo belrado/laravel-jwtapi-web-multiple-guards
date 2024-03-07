@@ -1,0 +1,75 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Example",
+        "description": "K-news API Documentation",
+        "contact": {
+            "name": "Belrado",
+            "email": "u5ink@naver.com"
+        },
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/v1/news/list": {
+            "get": {
+                "tags": [
+                    "뉴스목록"
+                ],
+                "summary": "Example API",
+                "operationId": "3c02985b4653c92de9b4ff81b738d580",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "newsCategories,newsTags",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mode",
+                        "in": "query",
+                        "description": "app, web",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

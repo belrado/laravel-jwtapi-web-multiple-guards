@@ -24,6 +24,57 @@ class NewsController extends Controller
         $this->newsService = new NewsService();
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/news/list",
+     *     tags={"뉴스목록"},
+     *     summary="Example API",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          name="type",
+     *          in="query",
+     *          required=true,
+     *          description="newsCategories,newsTags",
+     *          @OA\Schema(
+     *              type="string",
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="mode",
+     *          in="query",
+     *          required=true,
+     *          description="app, web",
+     *          @OA\Schema(
+     *              type="string",
+     *          )
+     *      ),
+     *     @OA\Parameter(
+     *          name="page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     *
+     * @OA\SecurityScheme(
+     *     type="http",
+     *     scheme="bearer",
+     *     securityScheme="bearerAuth",
+     *     bearerFormat="JWT",
+     * )
+     */
     public function getNews(Request $request)
     {
         $params = $request->input();
